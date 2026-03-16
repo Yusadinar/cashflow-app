@@ -139,7 +139,7 @@ for a student project while demonstrating clean separation of concerns.
 
 ---
 
-## 🖼️ Screenshots
+## 🖼️ Summary
 
 | Page | Description |
 |---|---|
