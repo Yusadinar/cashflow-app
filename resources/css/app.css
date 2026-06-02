@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@plugin "@tailwindcss/forms";
+
+@theme {
+    --color-brand-50: #f0fdf4;
+    --color-brand-100: #dcfce7;
+    --color-brand-500: #22c55e;
+    --color-brand-600: #16a34a;
+    --color-brand-700: #15803d;
+    --color-brand-900: #14532d;
+
+    --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* ── Scrollbar ───────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; height: 5px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--color-slate-300, #cbd5e1); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-slate-400, #94a3b8); }
+
+/* ── Page transitions ────────────────────────────────── */
+main { animation: fadeIn .25s ease-out both; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Card hover lift ─────────────────────────────────── */
+.card-lift {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.card-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.07);
+}
+
+/* ── Modal backdrop blur ─────────────────────────────── */
+.modal-overlay {
+    backdrop-filter: blur(3px);
+}
+
+/* ── Table row fade-in ───────────────────────────────── */
+tbody tr {
+    animation: rowIn .2s ease-out both;
+}
+tbody tr:nth-child(1)  { animation-delay: .02s; }
+tbody tr:nth-child(2)  { animation-delay: .04s; }
+tbody tr:nth-child(3)  { animation-delay: .06s; }
+tbody tr:nth-child(4)  { animation-delay: .08s; }
+tbody tr:nth-child(5)  { animation-delay: .10s; }
+tbody tr:nth-child(6)  { animation-delay: .12s; }
+tbody tr:nth-child(7)  { animation-delay: .14s; }
+tbody tr:nth-child(8)  { animation-delay: .16s; }
+@keyframes rowIn {
+    from { opacity: 0; transform: translateX(-6px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Focus rings ─────────────────────────────────────── */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+}
+
+/* ── Print (for PDF export fallback) ────────────────── */
+@media print {
+    aside, button, .no-print { display: none !important; }
+    main { margin-left: 0 !important; }
+}

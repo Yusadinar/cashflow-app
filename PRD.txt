@@ -1,0 +1,109 @@
+================================================================================
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+CASHFLOW MANAGER APP (MIGRASI KE LARAVEL & TAILWIND CSS)
+================================================================================
+
+1. PENDAHULUAN
+Dokumen ini menguraikan spesifikasi kebutuhan produk (PRD) untuk proyek pembuatan ulang (recreate) aplikasi CashFlow Manager dari versi legacy (Native PHP) menuju framework Laravel versi terbaru dan styling menggunakan Tailwind CSS. 
+Aplikasi ini ditujukan untuk memanajemen arus kas pribadi atau bisnis skala kecil dengan kapabilitas multi-user (multi-tenant).
+
+2. TUJUAN PROYEK
+- Memigrasikan arsitektur MVC native ke dalam ekosistem Laravel modern (Eloquent ORM, Blade Templates, Routing).
+- Memperbarui styling UI/UX menggunakan Tailwind CSS versi terbaru agar lebih modern, responsif, dan rapi.
+- Meningkatkan keamanan (CSRF, SQL Injection prevention, XSS prevention) menggunakan fitur bawaan Laravel.
+- Mempertahankan seluruh fitur dari sistem legacy sambil meningkatkan skalabilitas kode.
+
+3. SPESIFIKASI TEKNIS
+- Backend: Laravel Framework (Versi terbaru, misal Laravel 11/12)
+- Frontend: Laravel Blade, Tailwind CSS (CDN / Vite Pipeline)
+- Database: MySQL
+- Grafik & Chart: Chart.js 4
+- Export Dokumen: Laravel-DomPDF atau package sejenis.
+- Tipografi: Plus Jakarta Sans (Google Fonts)
+
+4. FITUR UTAMA
+
+4.1 Autentikasi & Otorisasi
+- Login & Logout berbasis session.
+- Proteksi route (middleware `auth`) untuk semua halaman kecuali halaman login.
+- Multi-user scoping: Setiap pengguna hanya dapat melihat dan memodifikasi data (Kategori, Metode Pembayaran, Transaksi) miliknya sendiri.
+
+4.2 Dashboard Interaktif
+- Ringkasan Finansial: Menampilkan Saldo Total, Pemasukan Bulan Ini, dan Pengeluaran Bulan Ini.
+- Visualisasi Data: Menampilkan Bar Chart (Chart.js) untuk perbandingan pemasukan dan pengeluaran.
+- Riwayat Singkat: Daftar transaksi terakhir.
+
+4.3 Manajemen Kategori (Categories)
+- CRUD (Create, Read, Update, Delete) kategori.
+- Klasifikasi kategori berdasarkan jenis: Pemasukan (`income`) atau Pengeluaran (`expense`).
+- Proteksi penghapusan (Restrict): Tidak bisa menghapus kategori yang masih terkait dengan transaksi.
+
+4.4 Manajemen Metode Pembayaran (Payment Methods)
+- CRUD (Create, Read, Update, Delete) metode pembayaran (contoh: BCA, Jago, Seabank, Gopay, dll).
+- Proteksi penghapusan (Restrict): Tidak bisa menghapus metode pembayaran yang masih terkait dengan transaksi.
+
+4.5 Manajemen Transaksi (Transactions)
+- CRUD transaksi.
+- Input detail transaksi: 
+  - Kategori (Dropdown dinamis sesuai tipe)
+  - Metode Pembayaran (Dropdown)
+  - Tipe (Income/Expense)
+  - Jumlah (Amount)
+  - Tanggal Transaksi (Date)
+  - Deskripsi (Text)
+- Filter dan sorting data transaksi pada tabel.
+
+4.6 Laporan (Reports)
+- Filter laporan berdasarkan rentang tanggal/bulan.
+- Visualisasi persentase pengeluaran/pemasukan menggunakan Doughnut Chart.
+- Fitur Export laporan ke dalam format PDF (Berisi ringkasan dan tabel transaksi).
+
+5. STRUKTUR DATABASE (SCHEMA)
+
+Berikut adalah entitas yang dibutuhkan beserta relasinya:
+
+- Table `users`
+  - id (PK)
+  - name (String)
+  - email (String, Unique)
+  - password (String, Hashed)
+  - timestamps
+
+- Table `categories`
+  - id (PK)
+  - user_id (FK ke users.id, Cascade Delete)
+  - name (String)
+  - type (Enum: 'income', 'expense')
+  - timestamps
+
+- Table `payment_methods`
+  - id (PK)
+  - user_id (FK ke users.id, Cascade Delete)
+  - name (String)
+  - timestamps
+
+- Table `transactions`
+  - id (PK)
+  - user_id (FK ke users.id, Cascade Delete)
+  - category_id (FK ke categories.id, Restrict Delete)
+  - payment_method_id (FK ke payment_methods.id, Restrict Delete)
+  - type (Enum: 'income', 'expense')
+  - amount (Decimal)
+  - description (Text)
+  - transaction_date (Date)
+  - timestamps
+
+6. DESAIN ANTARMUKA & UI/UX
+- Mobile-First Design: Semua halaman harus sepenuhnya responsif.
+- Sidebar Navigation: Menu navigasi di sisi kiri (Desktop) dan mode hamburger menu (Mobile).
+- Estetika: Penggunaan whitespace yang baik, soft shadows, rounded borders, dan konsistensi warna (misal: warna hijau/biru untuk income, merah untuk expense).
+- Interaksi: Form validation dengan indikator error yang jelas (warna merah untuk input tidak valid).
+
+7. FASE PENGEMBANGAN (MILESTONES)
+- Fase 1: Setup Laravel, Database Migration & Seeding (Users, Categories, Payment Methods).
+- Fase 2: Auth scaffolding (Breeze/Jetstream atau custom), pembuatan Layout Blade & integrasi Tailwind CSS.
+- Fase 3: Pembuatan CRUD Kategori & Metode Pembayaran.
+- Fase 4: Pembuatan CRUD Transaksi.
+- Fase 5: Implementasi Dashboard (Statistik & Chart.js).
+- Fase 6: Laporan Bulanan & Fitur Export PDF.
+- Fase 7: Testing, UI Polishing, dan QA.
