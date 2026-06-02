@@ -9,6 +9,7 @@ Website Live: https://cashflow-app.xo.je/
 - **Multi-Wallet Management:** Create and manage multiple payment methods (e.g., Bank Accounts, E-Wallets, Investment Portfolios) with accurate initial balance tracking.
 - **Income & Expense Tracking:** Log daily financial activities categorized accurately by custom Income/Expense types.
 - **Internal Transfers:** Move funds between your different payment methods seamlessly without inflating your monthly income/expense charts.
+- **Wishlist Planner:** Plan future purchases, set target payment methods, and preview estimated remaining balances before spending.
 - **Analytics Dashboard:** A comprehensive, real-time dashboard featuring monthly charts, account balance summaries, and a quick overview of recent transactions.
 - **Modern & Responsive UI:** Built with Tailwind CSS and Alpine.js, offering a premium user experience that works flawlessly on desktop and mobile devices.
 - **Secure Authentication:** Built on top of Laravel Breeze for secure, out-of-the-box user registration and authentication.

@@ -17,4 +17,9 @@ class PaymentMethod extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+    }
 }
