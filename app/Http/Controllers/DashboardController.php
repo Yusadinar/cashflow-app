@@ -34,6 +34,16 @@ class DashboardController extends Controller
             ->groupBy('payment_method_id', 'type')
             ->get();
 
+        $transferSumsIn = $user->transfers()
+            ->selectRaw('to_payment_method_id, SUM(amount) as total')
+            ->groupBy('to_payment_method_id')
+            ->get();
+            
+        $transferSumsOut = $user->transfers()
+            ->selectRaw('from_payment_method_id, SUM(amount) as total')
+            ->groupBy('from_payment_method_id')
+            ->get();
+
         $income = $transactionSums->where('type', 'income')->sum('total') + $initialBalance;
         $expense = $transactionSums->where('type', 'expense')->sum('total');
         
@@ -41,9 +51,12 @@ class DashboardController extends Controller
         foreach ($paymentMethods as $pm) {
             $pmIncome = $transactionSums->where('payment_method_id', $pm->id)->where('type', 'income')->sum('total');
             $pmExpense = $transactionSums->where('payment_method_id', $pm->id)->where('type', 'expense')->sum('total');
+            $transfersIn = $transferSumsIn->where('to_payment_method_id', $pm->id)->sum('total');
+            $transfersOut = $transferSumsOut->where('from_payment_method_id', $pm->id)->sum('total');
+
             $balances[] = [
                 'name' => $pm->name,
-                'balance' => $pm->balance + $pmIncome - $pmExpense
+                'balance' => $pm->balance + $pmIncome - $pmExpense + $transfersIn - $transfersOut
             ];
         }
 
@@ -69,9 +82,9 @@ class DashboardController extends Controller
         }
 
         $yearlyInitialBalances = $user->paymentMethods()
-            ->whereYear('created_at', $year)
-            ->selectRaw('MONTH(created_at) as month, SUM(balance) as total')
-            ->groupByRaw('MONTH(created_at)')
+            ->whereYear('updated_at', $year)
+            ->selectRaw('MONTH(updated_at) as month, SUM(balance) as total')
+            ->groupByRaw('MONTH(updated_at)')
             ->get();
 
         foreach ($yearlyInitialBalances as $b) {
