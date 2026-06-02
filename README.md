@@ -2,6 +2,8 @@
 
 A modern, responsive personal finance tracking application built with Laravel 12 and Tailwind CSS. CashFlow App empowers users to take control of their finances by meticulously tracking incomes, expenses, and managing multiple wallets seamlessly.
 
+Website Live: https://cashflow-app.xo.je/
+
 ## ✨ Key Features
 
 - **Multi-Wallet Management:** Create and manage multiple payment methods (e.g., Bank Accounts, E-Wallets, Investment Portfolios) with accurate initial balance tracking.
