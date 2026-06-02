@@ -1,59 +1,77 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CashFlow App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, responsive personal finance tracking application built with Laravel 12 and Tailwind CSS. CashFlow App empowers users to take control of their finances by meticulously tracking incomes, expenses, and managing multiple wallets seamlessly.
 
-## About Laravel
+## ✨ Key Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Multi-Wallet Management:** Create and manage multiple payment methods (e.g., Bank Accounts, E-Wallets, Investment Portfolios) with accurate initial balance tracking.
+- **Income & Expense Tracking:** Log daily financial activities categorized accurately by custom Income/Expense types.
+- **Internal Transfers:** Move funds between your different payment methods seamlessly without inflating your monthly income/expense charts.
+- **Analytics Dashboard:** A comprehensive, real-time dashboard featuring monthly charts, account balance summaries, and a quick overview of recent transactions.
+- **Modern & Responsive UI:** Built with Tailwind CSS and Alpine.js, offering a premium user experience that works flawlessly on desktop and mobile devices.
+- **Secure Authentication:** Built on top of Laravel Breeze for secure, out-of-the-box user registration and authentication.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Technology Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend:** Laravel 12 (PHP)
+- **Frontend:** Tailwind CSS, Alpine.js, Blade Templates
+- **Data Visualization:** Chart.js
+- **Database:** MySQL / MariaDB (or SQLite for local development)
 
-## Learning Laravel
+## 🚀 Installation & Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Follow these steps to run the project locally:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Yusadinar/cashflow-app.git
+   cd cashflow-app
+   ```
 
-## Laravel Sponsors
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Install NPM dependencies**
+   ```bash
+   npm install
+   ```
 
-### Premium Partners
+4. **Environment Setup**
+   Copy the `.env.example` file to `.env` and configure your database credentials.
+   ```bash
+   cp .env.example .env
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+5. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Contributing
+6. **Run Database Migrations**
+   Make sure your database server is running, then execute:
+   ```bash
+   php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+7. **Compile Frontend Assets**
+   ```bash
+   npm run build
+   ```
 
-## Code of Conduct
+8. **Start the Development Server**
+   ```bash
+   php artisan serve
+   ```
+   Visit `http://localhost:8000` in your browser.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📦 Deployment (e.g., InfinityFree / Shared Hosting)
+When deploying to a shared hosting environment without SSH access:
+1. Ensure you have run `npm run build` locally and upload the `public/build` directory.
+2. Upload the source code (excluding `node_modules`).
+3. For database migrations, you can export your local database via phpMyAdmin and import it to the live server, OR temporarily create a route in `routes/web.php` that calls `Artisan::call('migrate', ['--force' => true])` and access it via the browser.
 
-## Security Vulnerabilities
+## 📄 License
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-source and available under the [MIT License](LICENSE).
