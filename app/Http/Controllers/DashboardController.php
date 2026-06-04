@@ -24,6 +24,7 @@ class DashboardController extends Controller
             ->with(['category', 'paymentMethod'])
             ->whereBetween('transaction_date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
             ->orderBy('transaction_date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $paymentMethods = $user->paymentMethods;

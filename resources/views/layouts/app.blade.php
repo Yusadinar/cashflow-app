@@ -19,12 +19,12 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     </head>
     <body class="font-sans text-slate-800 antialiased bg-slate-50">
-        <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false }">
+        <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false, sidebarMinimized: localStorage.getItem('sidebarMinimized') === 'true' }" x-init="$watch('sidebarMinimized', val => localStorage.setItem('sidebarMinimized', val))">
             
             @include('layouts.navigation')
 
             <!-- Main content -->
-            <main class="flex-1 lg:ml-64 overflow-y-auto">
+            <main :class="sidebarMinimized ? 'lg:ml-20' : 'lg:ml-64'" class="flex-1 overflow-y-auto transition-all duration-300">
                 <!-- Top bar -->
                 <div class="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-slate-100 px-4 sm:px-6 min-h-[4rem] py-3 flex items-center justify-between gap-4">
                     <div class="flex items-center gap-3 min-w-0">

@@ -25,7 +25,7 @@
         </div>
     @endif
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style="gap: 2.5rem;">
         @forelse($wishlists as $wishlist)
             <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col transition-all hover:shadow-md">
                 <div class="p-5 flex-1 flex flex-col">

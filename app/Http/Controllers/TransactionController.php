@@ -36,9 +36,9 @@ class TransactionController extends Controller
         $allowedDirections = ['asc', 'desc'];
 
         if (in_array($sort, $allowedSorts) && in_array($direction, $allowedDirections)) {
-            $query->orderBy($sort, $direction);
+            $query->orderBy($sort, $direction)->orderBy('created_at', 'desc');
         } else {
-            $query->latest('transaction_date');
+            $query->latest('transaction_date')->orderBy('created_at', 'desc');
         }
 
         $transactions = $query->paginate(20)->withQueryString();
