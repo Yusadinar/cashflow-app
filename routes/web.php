@@ -8,6 +8,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\DebtController;
+use App\Http\Controllers\ChatbotController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('transfers', TransferController::class)->except(['show', 'edit', 'update']);
     Route::resource('wishlists', WishlistController::class)->except(['show']);
     Route::resource('debts', DebtController::class)->except(['show', 'create', 'edit']);
+    Route::post('/chatbot/ask', [ChatbotController::class, 'ask'])->name('chatbot.ask');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

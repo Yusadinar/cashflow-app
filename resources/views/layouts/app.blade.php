@@ -19,7 +19,15 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     </head>
     <body class="font-sans text-slate-800 antialiased bg-slate-50">
-        <div class="flex h-screen overflow-hidden" x-data="{ sidebarOpen: false, sidebarMinimized: localStorage.getItem('sidebarMinimized') === 'true' }" x-init="$watch('sidebarMinimized', val => localStorage.setItem('sidebarMinimized', val))">
+        <div class="flex h-screen overflow-hidden" 
+             x-data="{ 
+                sidebarOpen: false, 
+                sidebarPreference: localStorage.getItem('sidebarMinimized') === 'true',
+                windowWidth: window.innerWidth,
+                get sidebarMinimized() { return this.windowWidth >= 1024 ? this.sidebarPreference : false; }
+             }" 
+             @resize.window="windowWidth = window.innerWidth"
+             x-init="$watch('sidebarPreference', val => localStorage.setItem('sidebarMinimized', val))">
             
             @include('layouts.navigation')
 
@@ -71,6 +79,8 @@
                     {{ $slot }}
                 </div>
             </main>
+            
+            @include('components.chatbot')
         </div>
     </body>
 </html>

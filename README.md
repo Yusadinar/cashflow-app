@@ -12,7 +12,8 @@ Website Live: https://cashflow-app.xo.je/
 - **Debts & Receivables:** Track money you owe to others or money owed to you. Seamlessly pay off debts directly using your saved payment methods, automatically adjusting your wallet balances.
 - **Wishlist Planner:** Plan future purchases, set target payment methods, and preview estimated remaining balances before spending.
 - **Analytics Dashboard:** A comprehensive, real-time dashboard featuring monthly charts, account balance summaries, and a quick overview of recent transactions.
-- **Modern & Responsive UI:** Built with Tailwind CSS and Alpine.js, offering a premium user experience with a collapsible sidebar and seamless responsive design that works flawlessly on desktop and mobile devices.
+- **AI Financial Assistant:** Integrated smart chatbot powered by Google Gemini API. It analyzes your balances, monthly summaries, and recent transactions to provide tailored financial advice and insights instantly.
+- **Modern & Responsive UI:** Built with Tailwind CSS and Alpine.js, offering a premium user experience with a collapsible sidebar, a sleek AI chat widget (with blurred backdrop for mobile), and seamless responsive design that works flawlessly on desktop and mobile devices.
 - **Secure Authentication:** Built on top of Laravel Breeze for secure, out-of-the-box user registration and authentication.
 
 ## 🛠️ Technology Stack
@@ -46,6 +47,10 @@ Follow these steps to run the project locally:
    Copy the `.env.example` file to `.env` and configure your database credentials.
    ```bash
    cp .env.example .env
+   ```
+   *Note: To enable the AI Financial Assistant, you must also add your Google Gemini API key to the `.env` file:*
+   ```env
+   GEMINI_API_KEY=your_api_key_here
    ```
 
 5. **Generate Application Key**

@@ -10,7 +10,7 @@
               flex flex-col shadow-sm lg:translate-x-0 transition-all duration-300">
 
     <!-- Toggle Button (Edge) -->
-    <button @click="sidebarMinimized = !sidebarMinimized"
+    <button @click="sidebarPreference = !sidebarPreference"
             class="hidden lg:flex items-center justify-center absolute top-1/2 -translate-y-1/2 -right-4 w-4 h-16 bg-white border border-l-0 border-slate-200 rounded-r-xl text-slate-300 hover:text-brand-600 hover:bg-slate-50 focus:outline-none z-40 transition-colors cursor-pointer">
         <svg x-show="!sidebarMinimized" class="w-3.5 h-3.5 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
         <svg x-show="sidebarMinimized" class="w-3.5 h-3.5 mr-0.5 hidden" :class="sidebarMinimized ? '!block' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
