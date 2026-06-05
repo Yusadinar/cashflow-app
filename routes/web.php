@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('transfers', TransferController::class)->except(['show', 'edit', 'update']);
     Route::resource('wishlists', WishlistController::class)->except(['show']);
     Route::resource('debts', DebtController::class)->except(['show', 'create', 'edit']);
-    Route::post('/chatbot/ask', [ChatbotController::class, 'ask'])->name('chatbot.ask');
+    Route::post('/fin-assist/ask', [ChatbotController::class, 'ask'])->name('chatbot.ask');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

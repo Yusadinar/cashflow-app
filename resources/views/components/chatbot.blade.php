@@ -17,15 +17,22 @@
                 container.scrollTop = container.scrollHeight;
             });
             
-            fetch('/chatbot/ask', {
+            fetch('/fin-assist/ask', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
                 },
                 body: JSON.stringify({ message: userMsg })
             })
-            .then(response => response.json())
+            .then(async response => {
+                if (!response.ok) {
+                    const errData = await response.json().catch(() => null);
+                    throw new Error(errData?.reply || errData?.message || `HTTP Error ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 this.messages.push({ type: 'bot', text: data.reply });
                 this.isLoading = false;
@@ -38,7 +45,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                this.messages.push({ type: 'bot', text: 'Terjadi kesalahan saat memproses permintaan.' });
+                this.messages.push({ type: 'bot', text: error.message !== 'Failed to fetch' ? error.message : 'Terjadi kesalahan jaringan atau server memblokir akses ke AI.' });
                 this.isLoading = false;
             });
         }
