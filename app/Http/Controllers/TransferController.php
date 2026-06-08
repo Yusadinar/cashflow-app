@@ -55,6 +55,10 @@ class TransferController extends Controller
             abort(403);
         }
 
+        if ($validated['amount'] > $fromPm->current_balance) {
+            return back()->withErrors(['amount' => 'Saldo payment method asal tidak mencukupi untuk transfer ini.'])->withInput();
+        }
+
         $request->user()->transfers()->create($validated);
         return redirect()->route('transfers.index')->with('success', 'Transfer recorded successfully.');
     }

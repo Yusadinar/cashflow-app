@@ -45,8 +45,8 @@
                                     <div>
                                         <label for="type" class="block text-sm font-medium text-slate-700 mb-1">Record Type</label>
                                         <select id="type" name="type" required class="w-full border-slate-200 rounded-xl focus:ring-brand-500 focus:border-brand-500">
-                                            <option value="debt">I Owe (Debt)</option>
-                                            <option value="receivable">I am Owed (Receivable)</option>
+                                            <option value="debt">I Borrowed / Hutang (Debt)</option>
+                                            <option value="receivable">I Lent To / Piutang (Receivable)</option>
                                         </select>
                                     </div>
                                     <div>
@@ -119,7 +119,7 @@
                 <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-red-600">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                 </div>
-                <h2 class="text-xl font-bold text-slate-800">I Owe (Debts)</h2>
+                <h2 class="text-xl font-bold text-slate-800">I Borrowed (Debts)</h2>
             </div>
             
             <div class="space-y-4">
@@ -139,7 +139,7 @@
                 <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
                 </div>
-                <h2 class="text-xl font-bold text-slate-800">I am Owed (Receivables)</h2>
+                <h2 class="text-xl font-bold text-slate-800">I Lent To (Receivables)</h2>
             </div>
 
             <div class="space-y-4">

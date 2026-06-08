@@ -74,6 +74,10 @@ class TransactionController extends Controller
         $paymentMethod = \App\Models\PaymentMethod::findOrFail($validated['payment_method_id']);
         if ($paymentMethod->user_id !== auth()->id()) abort(403);
 
+        if ($validated['type'] === 'expense' && $validated['amount'] > $paymentMethod->current_balance) {
+            return back()->withErrors(['amount' => 'Saldo payment method tidak mencukupi untuk transaksi ini.'])->withInput();
+        }
+
         $request->user()->transactions()->create($validated);
         return redirect()->route('transactions.index')->with('success', 'Transaction added.');
     }
@@ -106,6 +110,22 @@ class TransactionController extends Controller
         
         $paymentMethod = \App\Models\PaymentMethod::findOrFail($validated['payment_method_id']);
         if ($paymentMethod->user_id !== auth()->id()) abort(403);
+
+        if ($validated['type'] === 'expense') {
+            $availableBalance = $paymentMethod->current_balance;
+            
+            if ($transaction->payment_method_id == $paymentMethod->id) {
+                if ($transaction->type === 'expense') {
+                    $availableBalance += $transaction->amount;
+                } elseif ($transaction->type === 'income') {
+                    $availableBalance -= $transaction->amount;
+                }
+            }
+
+            if ($validated['amount'] > $availableBalance) {
+                return back()->withErrors(['amount' => 'Saldo payment method tidak mencukupi untuk transaksi ini.'])->withInput();
+            }
+        }
 
         $transaction->update($validated);
         return redirect()->route('transactions.index')->with('success', 'Transaction updated.');

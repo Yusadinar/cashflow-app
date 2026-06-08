@@ -122,8 +122,8 @@
                             <div>
                                 <label class="block text-sm font-medium text-slate-700 mb-1">Record Type</label>
                                 <select name="type" required class="w-full border-slate-200 rounded-xl focus:ring-brand-500 focus:border-brand-500">
-                                    <option value="debt" {{ $item->type == 'debt' ? 'selected' : '' }}>I Owe (Debt)</option>
-                                    <option value="receivable" {{ $item->type == 'receivable' ? 'selected' : '' }}>I am Owed (Receivable)</option>
+                                    <option value="debt" {{ $item->type == 'debt' ? 'selected' : '' }}>I Borrowed / Hutang (Debt)</option>
+                                    <option value="receivable" {{ $item->type == 'receivable' ? 'selected' : '' }}>I Lent To / Piutang (Receivable)</option>
                                 </select>
                             </div>
                             <div>
